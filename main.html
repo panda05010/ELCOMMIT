@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>dona cuiquis</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Estilo adicional para mejorar la apariencia del select */
+    #product {
+      padding: 8px;
+      font-size: 16px;
+      width: 200px; /* Ajusta el tamaño del combo box */
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="pos">
+      <h1>Punto de venta Doña Olguis</h1>
+      <label for="product">Producto:</label>
+
+      <!-- Cambiado a un combo box (select) con opción inicial -->
+      <select id="product">
+        <option value="" selected disabled>Selecciona Una Opción</option>
+        <option value="Tacos de ojo">Tacos de ojo</option>
+        <option value="Tacos de tacos">Tacos de tacos</option>
+        <option value="Jeringas con helado">Jeringas con helado</option>
+        <option value="Mixtas">Mixtas</option>
+        <option value="Shukos">Shukos</option>
+        <option value="Pan con aji">Pan con aji</option>
+      </select>
+
+      <label for="price">Precio (Q):</label> <!-- Cambiado a Quetzales (Q) -->
+      <input type="text" id="price" placeholder="Ingresa el precio del producto">
+
+      <button onclick="addProduct()">Agregar al carrito</button>
+
+      <h2>Productos:</h2>
+      <ul id="productList"></ul>
+    </div>
+  </div>
+
+  <script>
+    function addProduct() {
+
+      var productSelect = document.getElementById("product");
+      var priceInput = document.getElementById("price");
+      var productList = document.getElementById("productList");
+
+      var product = productSelect.value; // Cambiado de productInput a productSelect
+      var price = priceInput.value;
+
+      if (product !== "" && price !== "" && product !== "Selecciona Una Opción") { // Verificar que se haya seleccionado un producto
+        var listItem = document.createElement("li");
+        // Cambiado el símbolo de $
+        listItem.textContent = product + " - Q" + price;
+        productList.appendChild(listItem);
+
+        // Clear input fields
+        priceInput.value = "";
+        productSelect.value = ""; // Restablecer la selección del combo box
+      }
+    }
+  </script>
+</body>
+</html>
